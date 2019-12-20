@@ -1,4 +1,4 @@
-package main.java.com.kodilla.testing.calculator;
+package com.kodilla.testing.calculator;
 
 public class Calculator {
 
@@ -10,6 +10,6 @@ public class Calculator {
     }
 
     public int substract(int a, int b){
-        return a+b;
+        return a-b;
     }
 }
