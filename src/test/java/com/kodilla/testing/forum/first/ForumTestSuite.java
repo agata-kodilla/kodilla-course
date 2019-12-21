@@ -1,4 +1,4 @@
-package com.kodilla.testing.forum;
+package com.kodilla.testing.forum.first;
 
 import org.junit.*;
 
@@ -33,7 +33,7 @@ public class ForumTestSuite {
         );
 
         //Then
-        Assert.assertEquals(1, forumUser.getPostsQuantity());
+        assertEquals(1, forumUser.getPostsQuantity());
     }
 
     @Test
@@ -126,7 +126,7 @@ public class ForumTestSuite {
 
         //Then
         Assert.assertTrue(result);
-        Assert.assertEquals(0, forumUser.getPostsQuantity());
+        assertEquals(0, forumUser.getPostsQuantity());
     }
 
     @Test
@@ -145,6 +145,6 @@ public class ForumTestSuite {
 
         //Then
         Assert.assertTrue(result);
-        Assert.assertEquals(0, forumUser.getCommentsQuantity());
+        assertEquals(0, forumUser.getCommentsQuantity());
     }
 }

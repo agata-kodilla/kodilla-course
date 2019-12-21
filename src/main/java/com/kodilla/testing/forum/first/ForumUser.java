@@ -1,4 +1,4 @@
-package com.kodilla.testing.forum;
+package com.kodilla.testing.forum.first;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
