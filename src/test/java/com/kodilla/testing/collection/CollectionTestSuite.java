@@ -12,7 +12,6 @@ import static org.junit.Assert.assertTrue;
 
 public class CollectionTestSuite {
 
-
     @Before
     public void before() {
         System.out.println("Test Case: begin");
@@ -36,9 +35,9 @@ public class CollectionTestSuite {
     @Test
     public void testOddNumbersExterminatorEmptyList() {
         //given
-        OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator(new ArrayList<>());
+        OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
         //when
-        List<Integer> result = oddNumbersExterminator.exterminate();
+        List<Integer> result = oddNumbersExterminator.exterminate(new ArrayList<>());
         //Then
         assertTrue(result.size() == 0);
     }
@@ -48,9 +47,9 @@ public class CollectionTestSuite {
         //Gven
         List<Integer> allList = Arrays.asList(1, 2, 3, 4, 5, 6, 22, 46, 849, 9283, 34, 254, 77, 505, 39, 238, 457, 7, 9696, 347, 6856, 3934, 75, 374, 239, 347, 54, 56);
         List<Integer> evenList = Arrays.asList(2, 4, 6, 22, 46, 34, 254, 238, 9696, 6856, 3934, 374, 54, 56);
-        OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator(allList);
+        OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
         //When
-        List<Integer> result = oddNumbersExterminator.exterminate();
+        List<Integer> result = oddNumbersExterminator.exterminate(allList);
         //Then
         assertThat(result, is(evenList));
     }
