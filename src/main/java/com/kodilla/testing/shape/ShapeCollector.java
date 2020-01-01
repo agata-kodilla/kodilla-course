@@ -1,7 +1,6 @@
 package com.kodilla.testing.shape;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ShapeCollector {
@@ -12,12 +11,7 @@ public class ShapeCollector {
     }
 
     public boolean removeFigure(Shape shape) {
-        boolean result = false;
-        if (shapeList.size() > 0) {
-            shapeList.remove(shape);
-            result = true;
-        }
-        return result;
+        return shapeList.remove(shape);
     }
 
     public Shape getFigure(int shapeNumber) {
@@ -38,5 +32,9 @@ public class ShapeCollector {
 
     public int getShapesQuantity() {
         return shapeList.size();
+    }
+
+    public double measureField(Shape shape) {
+        return shape.getField();
     }
 }

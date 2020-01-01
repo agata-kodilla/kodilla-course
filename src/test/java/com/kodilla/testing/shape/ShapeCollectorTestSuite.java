@@ -126,4 +126,18 @@ public class ShapeCollectorTestSuite {
         //Then
         assertEquals(null, list);
     }
+
+    @Test
+    public void testMeasureFieldtExisting() {
+        //Given
+        Triangle triangle = new Triangle(17, 33);
+
+        ShapeCollector shapeCollector = new ShapeCollector();
+
+        //When
+        double triangleField = shapeCollector.measureField(triangle);
+
+        //Then
+        assertEquals(Double.doubleToLongBits(280.5), Double.doubleToLongBits(triangleField));
+    }
 }
