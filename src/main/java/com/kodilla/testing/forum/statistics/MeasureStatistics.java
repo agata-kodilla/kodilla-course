@@ -9,6 +9,18 @@ public class MeasureStatistics {
     private double avgCommentUser;
     private double avgCommentPost;
 
+    public double getAvgPostUser() {
+        return avgPostUser;
+    }
+
+    public double getAvgCommentUser() {
+        return avgCommentUser;
+    }
+
+    public double getAvgCommentPost() {
+        return avgCommentPost;
+    }
+
     public MeasureStatistics(Statistics statistics) {
         this.statistics = statistics;
     }
@@ -22,19 +34,32 @@ public class MeasureStatistics {
     }
 
     private int getCommentCount() {
+        if (statistics.postsCount() == 0) {
+            return  0;
+        }
         return statistics.commentsCount();
     }
 
+
     private double getAvgPostPerUser() {
+        if(statistics.usersNames().size()==0) {
+            return 0;
+        }
         return (double) statistics.postsCount() / statistics.usersNames().size();
     }
 
     private double getAvgCommentPerUser() {
-        return (double)statistics.commentsCount() / statistics.usersNames().size();
+        if (statistics.postsCount() == 0 || statistics.usersNames().size()==0) {
+            return 0;
+        }
+        return (double) statistics.commentsCount() / statistics.usersNames().size();
     }
 
     private double getAvgCommentPerPost() {
-        return (double)statistics.commentsCount() / statistics.postsCount();
+        if(statistics.postsCount()==0){
+            return 0;
+        }
+        return (double) statistics.commentsCount() / statistics.postsCount();
     }
 
     public void calculateAdvStatistics() {
@@ -48,8 +73,7 @@ public class MeasureStatistics {
 
     public void showStatistics() {
         System.out.println("MeasureStatistics{" +
-                "statistics=" + statistics +
-                ", userCount=" + userCount +
+                "userCount=" + userCount +
                 ", postCount=" + postCount +
                 ", commentCount=" + commentCount +
                 ", avgPostUser=" + avgPostUser +
