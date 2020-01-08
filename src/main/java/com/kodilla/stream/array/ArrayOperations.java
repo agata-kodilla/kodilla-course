@@ -12,14 +12,9 @@ public interface ArrayOperations {
         IntStream.range(numbers[0], numbers[numbers.length-1])
                 .forEach(n -> System.out.println(n));
 
-        OptionalDouble asDouble = OptionalDouble.of(0);
-        OptionalDouble obj =IntStream.range(numbers[0], numbers[numbers.length-1]).average();
-        if (obj.isPresent()) {
-             asDouble = OptionalDouble.of(obj.getAsDouble());
-        }
-        else {
-         System.out.println("-1");
-        }
-        return asDouble;
+        return OptionalDouble.of(IntStream.range(numbers[0], numbers[numbers.length-1]).average().orElseGet(() -> {
+            System.out.println("-1");
+            return 0;
+        }));
     }
 }
