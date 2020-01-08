@@ -1,32 +1,36 @@
 package com.kodilla.stream.world;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class World {
-    private List<Continent> continentList;
+    private String name;
+    private List<Continent> continents;
 
-    public static List<Continent> getContinentList() {
-        final List<Continent> continetList = new ArrayList<>();
-        continetList.add(new Continent("Europe"));
-        continetList.add(new Continent("Asia"));
-        continetList.add(new Continent("North America"));
-        continetList.add(new Continent("South America"));
-        continetList.add(new Continent("Africa"));
-        return new ArrayList<Continent>(continetList);
+    public World(String name, List<Continent> continents) {
+        this.name = name;
+        this.continents = continents;
     }
 
-
-    public Map<Continent, Country> getContinentMap() {
-        final Map<Continent,Country> continetMap = new HashMap<>();
-    continetMap.put(new Continent("Europe"), new Country("Poland",new BigDecimal(38413000)));
-        return new HashMap<>(continetMap);
+    public Optional<BigDecimal> getPeopleQuantityContinent(ContinentName continent) {
+        return continents.stream()
+                .filter(c -> c.getName().toString().equalsIgnoreCase(continent.toString()))
+                .findFirst()
+                .map(Continent::getPeopleQuantityContinent);
     }
 
-    public BigDecimal getPeopleQuantity(){
-        return null;
+    public Optional<BigDecimal> getPeopleQuantityCountry(CountryName country) {
+        return continents.stream()
+                .flatMap(c -> c.getCountries().stream())
+                .filter(c -> c.getName().toString().equalsIgnoreCase(country.toString()))
+                .findFirst().map(Country::getPeopleQuantityCountry);
+    }
+
+    public Optional<BigDecimal> getPeopleQuantityWorld() {
+      return Optional.ofNullable(continents.stream()
+              .flatMap(c -> c.getCountries().stream())
+              .map(Country::getPeopleQuantityCountry)
+              .reduce(BigDecimal.ZERO, BigDecimal::add));
     }
 }
