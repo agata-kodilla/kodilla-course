@@ -5,37 +5,34 @@ import java.util.*;
 public class FindFlightRecursion {
     static Map<String, List<String>> airports;
     static Map<Integer, List<String>> routes = new HashMap<>();
-    static List<String> routesNetwork = new ArrayList<>();
-    static int num = 0;
-    static boolean blank = false;
-    static List<String>  temp;
+    static boolean success = false;
+    static int trueCount =0;
 
+    private static boolean findFilght(Flight flight) {
 
-    private static void findFilght(Flight flight) {
-        if (!blank) {
-            temp = new ArrayList<>();
-            blank = true;
-        }
-        List<String> availableAirports = null;
-        try {
+        if (flight.getDepartureAirport().isEmpty() || flight.getDepartureAirport() == null) {
+            success = false;
+        } else {
+            List<String> availableAirports = null;
             availableAirports = airports.get(flight.getDepartureAirport());
-            if (availableAirports != null) {
-                temp.add(flight.getDepartureAirport());
+            if (availableAirports == null) {
+                success = false;
             }
-            if (!availableAirports.contains(flight.getArrivalAirport())) {
-                for (String ava : availableAirports) {
-                    findFilght(new Flight(ava, flight.getArrivalAirport()));
+            else if (availableAirports != null) {
+                if (!availableAirports.contains(flight.getArrivalAirport())) {
+                    for (String ava : availableAirports) {
+                        findFilght(new Flight(ava, flight.getArrivalAirport()));
+                    }
+                } else {
+                    success =true;
+                    trueCount++;
                 }
-            } else {
-                temp.add(flight.getArrivalAirport());
-                routesNetwork.addAll(temp) ;
-                routes.put(num, routesNetwork);
-                temp.clear();
-                num++;
-                blank = false;
             }
-        } catch (Exception e) {
         }
+        if (trueCount > 0) {
+            success=true;
+        }
+        return success;
     }
 
 
@@ -54,12 +51,10 @@ public class FindFlightRecursion {
         airports.put("Tallinn", new ArrayList<>(Arrays.asList("Athens", "Berlin", "Budapest", "Rome")));
         airports.put("Helsinki", new ArrayList<>(Arrays.asList("Dublin", "Berlin", "Paris")));
         airports.put("Dublin", new ArrayList<>(Arrays.asList("Dublin", "Berlin", "Tbilisi", "Budapest", "Zagreb", "Vienna")));
-        airports.put("Rome", new ArrayList<>(Arrays.asList("Dublin", "Berlin", "Tbilisi")));
+        airports.put("Rome", new ArrayList<>(Arrays.asList("Dublin", "Berlin")));
         airports.put("Warsaw", new ArrayList<>(Arrays.asList("Berlin", "Dublin", "Rome")));
 
-        findFilght(new Flight("Warsaw", "Tbilisi"));
-        routes.entrySet().forEach(entry->{
-            System.out.println(entry.getKey() + " " + entry.getValue());
-        });
+        boolean filght = findFilght(new Flight("Warsaw", "Tbilisi"));
+        System.out.println(filght);
     }
 }
