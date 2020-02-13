@@ -5,21 +5,22 @@ import java.util.Map;
 
 public class ChartsManager {
     private Map<User, Chart> chartManagerMap;
+    private ProductStorage productStorage;
 
-    public ChartsManager() {
+    public ChartsManager(ProductStorage productStorage) {
         chartManagerMap = new HashMap<>();
+        this.productStorage = productStorage;
     }
 
     public Map<User, Chart> getChartManagerMap() {
         return chartManagerMap;
     }
 
-    public Chart getChartByUser(User user) {
-        if(chartManagerMap.containsKey(user)){
+    private Chart getChartByUser(User user) {
+        if (chartManagerMap.containsKey(user)) {
             return chartManagerMap.get(user);
-        }
-        else {
-            Chart chart =new Chart(user);
+        } else {
+            Chart chart = new Chart(user);
             chartManagerMap.put(user, chart);
             return chart;
         }
@@ -28,4 +29,14 @@ public class ChartsManager {
     public double calculateTotalChart(User user) {
         return chartManagerMap.get(user).calculateTotal();
     }
+
+    public void addProductsToChart(User user, Product product, int amount) {
+        getChartByUser(user).addProductsToChart(product, amount);
+        productStorage.updateProducts(product, amount);
+    }
+
+    public Order createOrder(User user){
+       return new Order(getChartByUser(user));
+    }
+
 }

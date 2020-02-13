@@ -15,8 +15,8 @@ public class ProductStorage {
         products.put(product, amount);
     }
 
-    public void removeProducts(Product product, int amount) {
-        products.remove(product, amount);
+    public void removeProducts(Product product) {
+        products.remove(product);
     }
 
     public Map<Product, Integer> getProducts() {

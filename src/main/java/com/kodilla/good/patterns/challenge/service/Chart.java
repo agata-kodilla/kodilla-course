@@ -7,9 +7,11 @@ import java.util.Objects;
 public class Chart {
 
     private Map<Product, Integer> productsInChart;
+    private User user;
 
     public Chart(User user) {
         productsInChart = new HashMap<>();
+        this.user=user;
     }
 
     public void addProductsToChart(Product product, int amount) {
