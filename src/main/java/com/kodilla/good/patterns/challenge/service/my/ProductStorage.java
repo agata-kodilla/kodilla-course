@@ -1,0 +1,35 @@
+package com.kodilla.good.patterns.challenge.service.my;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class ProductStorage {
+
+    private Map<Product, Integer> products;
+
+    public ProductStorage() {
+        products = new HashMap<>();
+    }
+
+    public void addProducts(Product product, int amount) {
+        products.put(product, amount);
+    }
+
+    public void removeProducts(Product product, int amount) {
+        products.remove(product, amount);
+    }
+
+    public Map<Product, Integer> getProducts() {
+        return products;
+    }
+
+    public void updateProducts(Product product, int amount) {
+        if(amount>products.get(product)){
+            System.out.println("Out of stock");
+        }
+        else {
+            products.put(product, products.get(product) - amount);
+        }
+    }
+
+}
