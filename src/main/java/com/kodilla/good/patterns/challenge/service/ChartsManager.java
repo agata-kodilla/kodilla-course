@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.challenge.service.my;
+package com.kodilla.good.patterns.challenge.service;
 
 import java.util.HashMap;
 import java.util.Map;

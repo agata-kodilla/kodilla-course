@@ -1,7 +1,5 @@
 package com.kodilla.good.patterns.challenge.service;
 
-import com.kodilla.good.patterns.challenge.service.my.*;
-
 import java.util.Map;
 
 public class Application {

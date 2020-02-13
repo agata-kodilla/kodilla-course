@@ -1,8 +1,6 @@
-package com.kodilla.good.patterns.challenge.service.my;
+package com.kodilla.good.patterns.challenge.service;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Map;
 
 public class Order {
     @NotNull private Chart chart;
