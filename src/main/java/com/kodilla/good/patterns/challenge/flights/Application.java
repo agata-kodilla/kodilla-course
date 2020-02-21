@@ -27,9 +27,9 @@ public class Application {
         flightManager.addConnection("Warsaw", new ArrayList<>(Arrays.asList("Berlin", "Dublin", "Rome")));
 
         List<String> allArrivals = flightManager.getAllArrivals();
-        System.out.println(Arrays.toString(allArrivals.toArray()));
+        System.out.println("All arrivals: "+Arrays.toString(allArrivals.toArray()));
         List<String> allDepartures = flightManager.getAllDepartures();
-        System.out.println(Arrays.toString(allDepartures.toArray()));
+        System.out.println("All departures: " +Arrays.toString(allDepartures.toArray()));
 
     }
 
