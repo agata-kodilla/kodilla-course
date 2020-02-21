@@ -1,6 +1,6 @@
 package com.kodilla.good.patterns.challenge.food2door.provider;
 
-public enum ProviderEnum {
+public enum DeliveryProviderType {
 
     HEALTHY_SHOP("Healthy Shop"),
 
@@ -11,7 +11,7 @@ public enum ProviderEnum {
     /**
      * @param text
      */
-    ProviderEnum(final String text) {
+    DeliveryProviderType(final String text) {
         this.text = text;
     }
 
