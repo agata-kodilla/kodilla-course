@@ -10,6 +10,7 @@ public class HealthyShopDeliveryProvider implements DeliveryProvider {
                 .filter(e -> e.getKey().getProvider() == DeliveryProviderType.HEALTHY_SHOP)
                 .mapToDouble(e -> e.getKey().getPrice() * e.getValue())
                 .sum();
+        //if gdy wartosc 0
         if (healthyShop > 250) {
             return 0;
         } else {

@@ -6,6 +6,7 @@ public class ExtraFoodShopDeliveryProvider implements DeliveryProvider {
 
     @Override
     public double processOfCalculateDeliver(Cart cart) {
+
         double extraFoodShopOrder = cart.getProductsInCart().entrySet().stream()
                 .filter(e -> e.getKey().getProvider() == DeliveryProviderType.EXTRA_FOOD_SHOOP)
                 .mapToDouble(e -> e.getKey().getPrice() * e.getValue())

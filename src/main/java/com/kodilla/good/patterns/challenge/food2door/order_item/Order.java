@@ -2,11 +2,7 @@ package com.kodilla.good.patterns.challenge.food2door.order_item;
 
 import com.kodilla.good.patterns.challenge.food2door.product_item.Product;
 import com.kodilla.good.patterns.challenge.food2door.provider.DeliveryProviderType;
-
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-
 import static java.util.stream.Collectors.toSet;
 
 public class Order {

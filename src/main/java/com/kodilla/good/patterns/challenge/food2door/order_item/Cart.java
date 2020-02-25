@@ -18,6 +18,7 @@ public class Cart {
     }
 
     protected void addToProductToCart(Product product, int amount) {
+        //jesli jest to dodaje a nie zastępuje
         productsInCart.put(product, amount);
     }
 
@@ -33,19 +34,5 @@ public class Cart {
         return productsInCart.entrySet().stream()
                 .mapToDouble(e -> e.getValue() * e.getKey().getPrice())
                 .sum();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cart cart = (Cart) o;
-        return Objects.equals(productsInCart, cart.productsInCart) &&
-                Objects.equals(user, cart.user);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(productsInCart, user);
     }
 }
