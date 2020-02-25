@@ -1,13 +1,16 @@
 package com.kodilla.good.patterns.challenge.food2door.product_item;
 
+import com.kodilla.good.patterns.challenge.food2door.provider.DeliveryProvider;
+import com.kodilla.good.patterns.challenge.food2door.provider.DeliveryProviderType;
+
 import java.util.Objects;
 
 public class Product {
     private String name;
     private double price;
-    private String provider;
+    private DeliveryProviderType provider;
 
-    public Product(String name, double price, String provider) {
+    public Product(String name, double price, DeliveryProviderType provider) {
         this.name = name;
         this.price = price;
         this.provider = provider;
@@ -25,7 +28,7 @@ public class Product {
         this.name = name;
     }
 
-    public String getProvider() {
+    public DeliveryProviderType getProvider() {
         return provider;
     }
 

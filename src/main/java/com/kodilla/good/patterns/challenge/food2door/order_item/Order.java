@@ -1,14 +1,16 @@
 package com.kodilla.good.patterns.challenge.food2door.order_item;
 
-import com.kodilla.good.patterns.challenge.food2door.User;
-import com.kodilla.good.patterns.challenge.food2door.provider.ExtraFoodShop;
-import com.kodilla.good.patterns.challenge.food2door.provider.HealthyShop;
-import com.kodilla.good.patterns.challenge.food2door.provider.ProviderImpl;
-import org.jetbrains.annotations.NotNull;
+import com.kodilla.good.patterns.challenge.food2door.product_item.Product;
+import com.kodilla.good.patterns.challenge.food2door.provider.DeliveryProviderType;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toSet;
 
 public class Order {
-    @NotNull
+
     private Cart cart;
 
     public Order(Cart cart) {
@@ -16,8 +18,16 @@ public class Order {
     }
 
     public double calculateOrder() {
-        ProviderImpl extraFoodShop = new ExtraFoodShop(cart);
-        ProviderImpl healthyShop = new HealthyShop(cart);
-        return cart.calculateCart()+extraFoodShop.processOfCalculateDeliver()+healthyShop.processOfCalculateDeliver();
+        return cart.calculateCart();
+    }
+
+    public Set<DeliveryProviderType> getRequiredDeliveryProviders() {
+        return cart.getProductsInCart().keySet().stream()
+                .map(Product::getProvider)
+                .collect(toSet());
+    }
+
+    public Cart getCart() {
+        return cart;
     }
 }
